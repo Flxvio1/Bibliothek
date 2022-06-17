@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Das ist ein Test Luca
+
 /**
  * Beinhaltet die benötigten JUnit testfälle für die Klasse Verwaltung. Es wird geprüft ob Kunden hinzugefügt, gesucht und die Adresse der Kunden bearbeitet werden kann.
  *

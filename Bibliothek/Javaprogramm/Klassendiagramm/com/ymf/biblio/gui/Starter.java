@@ -15,5 +15,4 @@ public class Starter {
 		//Konstruktor Aufruf
 		new UI();
 	}
-
 }
