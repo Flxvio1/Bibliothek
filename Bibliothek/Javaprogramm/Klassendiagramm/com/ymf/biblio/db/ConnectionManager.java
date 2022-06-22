@@ -23,6 +23,7 @@ public class ConnectionManager {
 		Connection con = DriverManager.getConnection(
 				"jdbc:mysql://192.168.40.6:3306/bibliothek?user=lufla&password=password");
 		//Gibt con zurück, damit verbinung von anderen Klassen möglich ist
+
 		return con;
 	}
 
