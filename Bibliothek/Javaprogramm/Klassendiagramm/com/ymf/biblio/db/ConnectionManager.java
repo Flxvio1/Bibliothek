@@ -19,13 +19,29 @@ public class ConnectionManager {
 
 	//Verbindung zur DB wird hergstellt.
 	public static java.sql.Connection getConnection() throws SQLException, ClassNotFoundException {
-		Class.forName("org.mariadb.jdbc.Driver");
-		Connection con = DriverManager.getConnection(
-				// url ist auf Postgres 63
-				"jdbc:mysql://192.168.40.63:3306/bibliothek?user=lufla&password=password");
-		//Gibt con zurück, damit verbinung von anderen Klassen möglich ist
-
+		String serverAuswahl = "MariaDB"; // Auswahl welche DB verwendet werden soll
+		Connection con;
+		if(serverAuswahl.equals("MariaDB")){
+			// Für MariaDB
+			System.out.println("Use MariaDB");
+			Class.forName("org.mariadb.jdbc.Driver");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://192.168.40.6:3306/bibliothek?user=lufla&password=password");
+		} else if(serverAuswahl.equals("PostgreSql")){
+			// Für PostgreSql
+			System.out.println("Use PostgreSql");
+			Class.forName("org.mariadb.jdbc.Driver");
+			con = DriverManager.getConnection(
+					"jdbc:postgresql://192.168.40.63:3306/bibliothek?user=postgres&password=InfLb20.admin");
+		} else{
+			// Wenn die Eingabe Falsch ist, wird automatisch MariaDB verwendet:
+			System.out.println("Use MariaDB");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://192.168.40.6:3306/bibliothek?user=lufla&password=password");
+		}
+  		//Gibt con zurück, damit verbinung von anderen Klassen möglich ist
 		return con;
+
 	}
 
 }
