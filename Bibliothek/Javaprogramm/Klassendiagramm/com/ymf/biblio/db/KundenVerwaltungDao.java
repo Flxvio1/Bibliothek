@@ -99,14 +99,27 @@ public class KundenVerwaltungDao implements KundeDao {
             plz = kunde.getAdresse().getPlz();
 
             //SQL Befehl um die Adresse in der Adresstabelle hinzuzufügen
-            String insertSql ="insert into adresse(strasse, hausnummer, plz ,ort) " +
-                    "values ( \"" + strasse + "\"," +
-                    "\"" + hausnummer + "\"," +
-                    "\"" + plz + "\"," +
-                    "\"" + ort + "\")";
+            String insertSql ="insert into adresse(strasse,hausnummer,plz,ort) values (?,?,?,?);";
+//            String insertSql ="insert into adresse(strasse, hausnummer, plz ,ort) " +
+//                    "values ( \"" + strasse + "\"," +
+//                    "\"" + hausnummer + "\"," +
+//                    "\"" + plz + "\"," +
+//                    "\"" + ort + "\")";
+//
+//            // Neuer SQLQuery
+//            insertSql ="insert into Adresse(Strasse, Hausnummer, Ort, PLZ) " +
+//                    "VALUES ('" + strasse + "', " + hausnummer + ", '" + ort + "', " + plz + ");" ;
 
             PreparedStatement stmnt = con.prepareStatement(insertSql);
-            stmnt.execute();
+            stmnt.setString(1, strasse);
+            stmnt.setInt(2, hausnummer);
+            stmnt.setInt(3, plz);
+            stmnt.setString(4, ort);
+            if (!stmnt.execute()) {
+                int n = stmnt.getUpdateCount();
+                System.out.println(n);
+            }
+            stmnt.close();
 
             //Wählt die neuste AdresseID aus
             String selectAdressSql = "select idAdresse from adresse " +
@@ -124,12 +137,17 @@ public class KundenVerwaltungDao implements KundeDao {
             }
 
             //SQL Befehl um den Kunden in der Kundentabelle hinzuzufügen.
-            insertSql = "insert into kunde (name, vorname, email ,adresse_idadresse) " +
-                    "values ( \"" + nachname + "\"," +
-                    "\"" + vorname + "\"," +
-                    "\"" + email + "\"," +
-                    "\"" + field + "\")";
+//            insertSql = "insert into kunde (name, vorname, email ,adresse_idadresse) " +
+//                    "values ( '" + nachname + "'," +
+//                    ", '" + vorname + "'," +
+//                    ", '" + email + "'," +
+//                    ", '" + field + "');";
+            insertSql = "insert into kunde (name,vorname,email,adresse_idadresse) values (?,?,?,?);";
             stmnt = con.prepareStatement(insertSql);
+            stmnt.setString(1, nachname);
+            stmnt.setString(2, vorname);
+            stmnt.setString(3, email);
+            stmnt.setInt(4, Integer.getInteger(field));
             stmnt.execute();
 
 
