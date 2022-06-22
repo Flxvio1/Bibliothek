@@ -51,11 +51,11 @@ public class KundenVerwaltungDao implements KundeDao {
             plz = kunde.getAdresse().getPlz();
             id = kunde.getId();
 
-            String updateSql = "update Adresse " +
-                    "set Hausnummer = \"" + hausnummer + "\", " +
-                    "Strasse = \"" + strasse + "\", " +
-                    "Ort = \"" + ort + "\", " +
-                    "PLZ = \"" + plz + "\" " +
+            String updateSql = "update adresse " +
+                    "set hausnummer = \"" + hausnummer + "\", " +
+                    "strasse = \"" + strasse + "\", " +
+                    "ort = \"" + ort + "\", " +
+                    "pLZ = \"" + plz + "\" " +
                     "where idAdresse = \"" + id + "\"";
             //SQL befehl umd die Adresse eines Kunden zu bearbeiten
             PreparedStatement stmnt = con.prepareStatement(updateSql);
@@ -99,17 +99,18 @@ public class KundenVerwaltungDao implements KundeDao {
             plz = kunde.getAdresse().getPlz();
 
             //SQL Befehl um die Adresse in der Adresstabelle hinzuzufügen
-            String insertSql ="insert into Adresse (Strasse, Hausnummer, PLZ ,ORT) " +
+            String insertSql ="insert into adresse(strasse, hausnummer, plz ,ort) " +
                     "values ( \"" + strasse + "\"," +
                     "\"" + hausnummer + "\"," +
                     "\"" + plz + "\"," +
                     "\"" + ort + "\")";
+
             PreparedStatement stmnt = con.prepareStatement(insertSql);
             stmnt.execute();
 
             //Wählt die neuste AdresseID aus
-            String selectAdressSql = "select idAdresse from Adresse " +
-                    "where idAdresse=(SELECT max(idAdresse) FROM Adresse)";
+            String selectAdressSql = "select idAdresse from adresse " +
+                    "where idAdresse=(SELECT max(idAdresse) FROM adresse)";
             stmnt = con.prepareStatement(selectAdressSql);
             ResultSet rs = stmnt.executeQuery();
 
@@ -123,7 +124,7 @@ public class KundenVerwaltungDao implements KundeDao {
             }
 
             //SQL Befehl um den Kunden in der Kundentabelle hinzuzufügen.
-            insertSql = "insert into Kunde (Name, Vorname, Email ,adresse_idadresse) " +
+            insertSql = "insert into kunde (name, vorname, email ,adresse_idadresse) " +
                     "values ( \"" + nachname + "\"," +
                     "\"" + vorname + "\"," +
                     "\"" + email + "\"," +
@@ -153,9 +154,9 @@ public class KundenVerwaltungDao implements KundeDao {
             con = ConnectionManager.getConnection();
 
             //Daten von einem bestimmten Kunden, der mit nachnamen gesucht werden kann, werden mit einem sql befehl ausgeben
-            String selectKundeAdresseSql = "select * from bibliothek.Kunde " +
-                    "left join bibliothek.Adresse " +
-                    "on Kunde.Adresse_idAdresse = Adresse.idAdresse";
+            String selectKundeAdresseSql = "select * from kunde k " +
+                    "left join adresse a " +
+                    "on k.adresse_idAdresse = a.idAdresse";
             PreparedStatement stmt = con.prepareStatement(selectKundeAdresseSql);
             ResultSet rs = stmt.executeQuery();
             // Array list damit es mehrere Kunden mit gleichem nachnamen anzeigen kann

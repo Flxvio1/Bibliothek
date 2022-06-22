@@ -19,13 +19,13 @@ public class ConnectionManager {
 
 	//Verbindung zur DB wird hergstellt.
 	public static java.sql.Connection getConnection() throws SQLException, ClassNotFoundException {
-		String serverAuswahl = "MariaDB"; // Auswahl welche DB verwendet werden soll
 		Connection con;
 			// Für PostgreSql
-			System.out.println("Use PostgreSql");
-			Class.forName("org.postgresql.jdbc.Driver");
+		System.out.println("Use PostgreSql");
+			Class.forName("org.postgresql.Driver");
+
 			con = DriverManager.getConnection(
-					"jdbc:postgresql://192.168.40.63:5432/bibliothek?user=lufla&password=password");
+					"jdbc:postgresql://192.168.40.63:5432/bibliothek?user=lufla&password=password&ssl=false");
 
   		//Gibt con zurück, damit verbinung von anderen Klassen möglich ist
 		return con;
