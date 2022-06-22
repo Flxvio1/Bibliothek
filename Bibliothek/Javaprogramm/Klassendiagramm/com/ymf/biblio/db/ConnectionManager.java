@@ -30,9 +30,9 @@ public class ConnectionManager {
 		} else if(serverAuswahl.equals("PostgreSql")){
 			// Für PostgreSql
 			System.out.println("Use PostgreSql");
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("org.postgresql.jdbc.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:postgresql://192.168.40.63:3306/bibliothek?user=postgres&password=InfLb20.admin");
+					"jdbc:postgresql://192.168.40.63:5432/bibliothek?user=lufla&password=password");
 		} else{
 			// Wenn die Eingabe Falsch ist, wird automatisch MariaDB verwendet:
 			System.out.println("Use MariaDB");
