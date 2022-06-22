@@ -21,7 +21,8 @@ public class ConnectionManager {
 	public static java.sql.Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("org.mariadb.jdbc.Driver");
 		Connection con = DriverManager.getConnection(
-				"jdbc:mysql://192.168.40.6:3306/bibliothek?user=lufla&password=password");
+				// url ist auf Postgres 63
+				"jdbc:mysql://192.168.40.63:3306/bibliothek?user=lufla&password=password");
 		//Gibt con zurück, damit verbinung von anderen Klassen möglich ist
 
 		return con;
