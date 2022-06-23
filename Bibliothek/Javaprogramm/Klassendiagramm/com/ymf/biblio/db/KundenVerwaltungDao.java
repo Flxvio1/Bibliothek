@@ -138,7 +138,6 @@ public class KundenVerwaltungDao implements KundeDao {
             stmnt.setString(2, vorname);
             stmnt.setString(3, email);
             stmnt.setInt(4, Integer.parseInt(field));
-            System.out.printf("Ich war hier");
             stmnt.execute();
 
 
