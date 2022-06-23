@@ -57,6 +57,7 @@ public class KundenVerwaltungDao implements KundeDao {
                     "ort = \"" + ort + "\", " +
                     "pLZ = \"" + plz + "\" " +
                     "where idAdresse = \"" + id + "\"";
+
             //SQL befehl umd die Adresse eines Kunden zu bearbeiten
             PreparedStatement stmnt = con.prepareStatement(updateSql);
             stmnt.execute();
@@ -100,16 +101,6 @@ public class KundenVerwaltungDao implements KundeDao {
 
             //SQL Befehl um die Adresse in der Adresstabelle hinzuzufügen
             String insertSql ="insert into adresse(strasse,hausnummer,plz,ort) values (?,?,?,?);";
-//            String insertSql ="insert into adresse(strasse, hausnummer, plz ,ort) " +
-//                    "values ( \"" + strasse + "\"," +
-//                    "\"" + hausnummer + "\"," +
-//                    "\"" + plz + "\"," +
-//                    "\"" + ort + "\")";
-//
-//            // Neuer SQLQuery
-//            insertSql ="insert into Adresse(Strasse, Hausnummer, Ort, PLZ) " +
-//                    "VALUES ('" + strasse + "', " + hausnummer + ", '" + ort + "', " + plz + ");" ;
-
             PreparedStatement stmnt = con.prepareStatement(insertSql);
             stmnt.setString(1, strasse);
             stmnt.setInt(2, hausnummer);
@@ -137,12 +128,6 @@ public class KundenVerwaltungDao implements KundeDao {
             }
 
             //SQL Befehl um den Kunden in der Kundentabelle hinzuzufügen.
-           // insertSql = "insert into kunde (name, vorname, email ,adresse_idadresse) " +
-                //  "values ( '" + nachname + "'," +
-                //   ", '" + vorname + "'," +
-                 //   ", '" + email + "'," +
-                 //   ", '" + field + "');";
-            
             insertSql = "insert into kunde (name,vorname,email,adresse_idadresse) values (?,?,?,?);";
             stmnt = con.prepareStatement(insertSql);
             stmnt.setString(1, nachname);
