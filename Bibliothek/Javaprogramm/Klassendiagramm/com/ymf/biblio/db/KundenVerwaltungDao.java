@@ -49,6 +49,7 @@ public class KundenVerwaltungDao implements KundeDao {
             hausnummer = kunde.getAdresse().getHausnummer();
             ort = kunde.getAdresse().getOrt();
             plz = kunde.getAdresse().getPlz();
+            id = kunde.getId();
 
             String selectAdressSql = "select idAdresse from adresse " +
                     "where idAdresse=(SELECT max(idAdresse) FROM adresse)";
@@ -56,13 +57,13 @@ public class KundenVerwaltungDao implements KundeDao {
             ResultSet rs = stmnt.executeQuery();
 
             // Konvertiert Ergebnis in String
-            String field = null;
-            int cols = rs.getMetaData().getColumnCount();
-            while (rs.next()) {
-                for (int i = 1; i <= cols; i++) {
-                    field = rs.getString(i);
-                }
-            }
+//            String field = null;
+//            int cols = rs.getMetaData().getColumnCount();
+//            while (rs.next()) {
+//                for (int i = 1; i <= cols; i++) {
+//                    field = rs.getString(i);
+//                }
+//            }
 
             // SQL Builder
             PreparedStatement stmt=con.prepareStatement("update adresse set hausnummer = ?,strasse = ?,ort = ?,plz = ? where idAdresse = ?;");
@@ -70,7 +71,7 @@ public class KundenVerwaltungDao implements KundeDao {
             stmt.setString(2,strasse);
             stmt.setString(3,ort);
             stmt.setInt(4,plz);
-            stmt.setInt(5,Integer.parseInt(field));
+            stmt.setInt(5,id);
 
             stmt.execute();
 
