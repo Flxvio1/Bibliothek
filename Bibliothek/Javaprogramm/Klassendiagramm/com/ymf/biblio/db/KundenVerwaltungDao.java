@@ -137,18 +137,19 @@ public class KundenVerwaltungDao implements KundeDao {
             }
 
             //SQL Befehl um den Kunden in der Kundentabelle hinzuzufügen.
-//            insertSql = "insert into kunde (name, vorname, email ,adresse_idadresse) " +
-//                    "values ( '" + nachname + "'," +
-//                    ", '" + vorname + "'," +
-//                    ", '" + email + "'," +
-//                    ", '" + field + "');";
-            insertSql = "insert into kunde (name,vorname,email,adresse_idadresse) values (?,?,?,?);";
+            insertSql = "insert into kunde (name, vorname, email ,adresse_idadresse) " +
+                  "values ( '" + nachname + "'," +
+                   ", '" + vorname + "'," +
+                    ", '" + email + "'," +
+                    ", '" + field + "');";
+            
+           /* insertSql = "insert into kunde (name,vorname,email,adresse_idadresse) values (?,?,?,?);";
             stmnt = con.prepareStatement(insertSql);
             stmnt.setString(1, nachname);
             stmnt.setString(2, vorname);
             stmnt.setString(3, email);
             stmnt.setInt(4, Integer.getInteger(field));
-            stmnt.execute();
+            stmnt.execute();*/
 
 
         } catch (Exception e) {
