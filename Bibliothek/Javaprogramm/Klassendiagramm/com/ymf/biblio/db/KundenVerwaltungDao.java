@@ -49,7 +49,6 @@ public class KundenVerwaltungDao implements KundeDao {
             hausnummer = kunde.getAdresse().getHausnummer();
             ort = kunde.getAdresse().getOrt();
             plz = kunde.getAdresse().getPlz();
-            id = kunde.getId();
 
             String selectAdressSql = "select idAdresse from adresse " +
                     "where idAdresse=(SELECT max(idAdresse) FROM adresse)";
