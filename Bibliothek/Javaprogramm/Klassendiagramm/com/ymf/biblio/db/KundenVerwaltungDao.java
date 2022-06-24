@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static java.sql.DriverManager.getConnection;
 
@@ -56,14 +57,6 @@ public class KundenVerwaltungDao implements KundeDao {
             PreparedStatement stmnt = con.prepareStatement(selectAdressSql);
             ResultSet rs = stmnt.executeQuery();
 
-            // Konvertiert Ergebnis in String
-//            String field = null;
-//            int cols = rs.getMetaData().getColumnCount();
-//            while (rs.next()) {
-//                for (int i = 1; i <= cols; i++) {
-//                    field = rs.getString(i);
-//                }
-//            }
 
             // SQL Builder
             PreparedStatement stmt=con.prepareStatement("update adresse set hausnummer = ?,strasse = ?,ort = ?,plz = ? where idAdresse = ?;");
@@ -75,6 +68,7 @@ public class KundenVerwaltungDao implements KundeDao {
 
             stmt.execute();
 
+            Date d = new Date();
             
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -96,7 +90,6 @@ public class KundenVerwaltungDao implements KundeDao {
         int hausnummer;
         String ort;
         int plz;
-        int id;
 
         //Datenbank verbindung wird aufgerufen
         Connection con = null;
@@ -106,7 +99,6 @@ public class KundenVerwaltungDao implements KundeDao {
             //Nimmt die Werte von den verschiedenen Columnen und schreibt sie in die entspechenden Instanzvariabeln
             vorname = kunde.getVorname();
             nachname = kunde.getName();
-            id = kunde.getAdresse().getId();
             email = kunde.getEmail();
             strasse = kunde.getAdresse().getStrasse();
             hausnummer = kunde.getAdresse().getHausnummer();

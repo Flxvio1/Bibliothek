@@ -2,6 +2,7 @@ package Klassendiagramm.com.ymf.biblio.anwendung;
 
 
 import Klassendiagramm.com.ymf.biblio.gemeinsam.Kunde;
+import Klassendiagramm.com.ymf.biblio.gemeinsam.Medium;
 
 /**
  * Gibt Methoden für Klassen Verwaltung vor. Hierbei werden in der Klassen die entsprechenden Parameter übergeben.
@@ -38,5 +39,7 @@ public interface VerwaltungInterface {
 
 
 	public void mediumEntfernen();
+
+	public void mediumHinzufuegen(Medium medium);
 
 }

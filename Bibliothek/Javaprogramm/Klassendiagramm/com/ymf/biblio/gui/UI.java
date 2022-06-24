@@ -4,6 +4,7 @@ import Klassendiagramm.com.ymf.biblio.anwendung.Verwaltung;
 import Klassendiagramm.com.ymf.biblio.gemeinsam.Adresse;
 import Klassendiagramm.com.ymf.biblio.gemeinsam.Kunde;
 import Klassendiagramm.com.ymf.biblio.anwendung.FassadeInterface;
+import Klassendiagramm.com.ymf.biblio.gemeinsam.Medium;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -38,7 +39,7 @@ public class UI {
 //Methode um auswahl zu tätigen
     public void datenEingabe() {
 
-        System.out.println("\n Willkommen Zurueck Mitarbeiter! \n Sie koennen folgende Dinge Machen: \n 1) Kundename suechen \t 2) Kunde hinzufuegen \t 3) Kunde adresse aendern \t 4) Programm Schliessen");
+        System.out.println("\n Willkommen Zurueck Mitarbeiter! \n Sie koennen folgende Dinge Machen: \n 1) Kundename suechen \t 2) Kunde hinzufuegen \t 3) Kunde adresse aendern \t 4) Medium hinzufuegen \t 5) Programm Schliessen");
         Scanner sc = new Scanner(System.in);
         System.out.println("Ihre Ausahl: ");
         auswahleingabe = sc.nextInt();
@@ -59,6 +60,10 @@ public class UI {
             //Methodenaufruf von kundeHinzufuegen() in Verwaltung (Package Andwendung)
             adresseBearbeiten();
         } else if (auswahleingabe == 4) {
+            System.out.println("Sie haben Kunde Medium hinzufuegen ausgewaehlt!");
+            // Methode hinzufügen
+            mediumAusgabe();
+        }else if (auswahleingabe == 5) {
             System.out.println("Bis Bald!");
             exit(0);
         } else {
@@ -165,11 +170,23 @@ public class UI {
         datenEingabe();
     }
 
-    /**
-     * @param ean
-     */
-    public void mediumAusgabe(String ean) {
+    public void mediumAusgabe() {
+        Scanner sc1 = new Scanner(System.in);
+        System.out.print("Geben sie den Titel ein: ");
+        String titel = sc1.next();
 
+        System.out.print("Geben sie den Autor ein: ");
+        String autor = sc1.next();
+
+        System.out.print("Geben sie das Genre ein: ");
+        String genre = sc1.next();
+
+        sc1.close();
+
+        Medium m = new Medium(autor,genre, titel);
+
+        Verwaltung verwaltung = new Verwaltung();
+        verwaltung.mediumHinzufuegen(m);
     }
 
     /**

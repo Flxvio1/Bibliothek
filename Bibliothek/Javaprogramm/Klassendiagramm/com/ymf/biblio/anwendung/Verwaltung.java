@@ -1,8 +1,10 @@
 package Klassendiagramm.com.ymf.biblio.anwendung;
 
 import Klassendiagramm.com.ymf.biblio.db.KundenVerwaltungDao;
+import Klassendiagramm.com.ymf.biblio.db.MediumVerwaltungDao;
 import Klassendiagramm.com.ymf.biblio.gemeinsam.Adresse;
 import Klassendiagramm.com.ymf.biblio.gemeinsam.Kunde;
+import Klassendiagramm.com.ymf.biblio.gemeinsam.Medium;
 
 import java.util.ArrayList;
 
@@ -76,6 +78,9 @@ public class Verwaltung implements VerwaltungInterface {
     public void mediumEntfernen(long mediumId) {
 
     }
+    public void mediumEntfernen(Medium medium) {
+
+    }
 
 
     public void kundeAnmelden() {
@@ -89,6 +94,13 @@ public class Verwaltung implements VerwaltungInterface {
 
     public void mediumEntfernen() {
 
+    }
+
+    @Override
+    public void mediumHinzufuegen(Medium medium) {
+        MediumVerwaltungDao mediumVerwaltungDao = new MediumVerwaltungDao();
+        //Uebergabe des k in Objekt Kundenverwaltung.neuerKunde. (Dient zur erstelleng eines neuen Kunden
+        mediumVerwaltungDao.mediumHinzufuegen(medium);
     }
 
 }
