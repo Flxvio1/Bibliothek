@@ -28,7 +28,6 @@ public class UI {
     private int plz;
     private int id;
     private int auswahleingabe;
-    String kundenname;
 
     //Konstruktor
     public UI() {
@@ -173,20 +172,24 @@ public class UI {
     public void mediumAusgabe() {
         Scanner sc1 = new Scanner(System.in);
         System.out.print("Geben sie den Titel ein: ");
-        String titel = sc1.next();
+        String titel = sc1.nextLine();
 
         System.out.print("Geben sie den Autor ein: ");
-        String autor = sc1.next();
+        String autor = sc1.nextLine();
 
         System.out.print("Geben sie das Genre ein: ");
         String genre = sc1.next();
 
-        sc1.close();
+        System.out.println("Geben Sie den Medientyp ein: \n Sie koennen folgende Medientypen auswählen: \n 1) VideoGame \t 2) Buch \t 3) CD \t 4) Hoerbuch");
+        int medientyp = sc1.nextInt();
 
-        Medium m = new Medium(autor,genre, titel);
+
+        Medium m = new Medium(autor,genre, titel, medientyp);
 
         Verwaltung verwaltung = new Verwaltung();
         verwaltung.mediumHinzufuegen(m);
+
+        datenEingabe();
     }
 
     /**

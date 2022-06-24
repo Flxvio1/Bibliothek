@@ -206,9 +206,6 @@ public class KundenVerwaltungDao implements KundeDao {
         }
 
 
-        // Ergebnis ausgeben1
-
-
     }
 
 

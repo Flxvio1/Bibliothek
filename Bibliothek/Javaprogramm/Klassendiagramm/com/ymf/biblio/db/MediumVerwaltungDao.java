@@ -48,6 +48,7 @@ public class MediumVerwaltungDao {
 		try {
 			// Connection to DB
 			con = ConnectionManager.getConnection();
+			medientyp_idmedientyp= medium.getArt();
 			titel = medium.getTitel();
 			autor = medium.getAutor();
 			genre = medium.getGenre();

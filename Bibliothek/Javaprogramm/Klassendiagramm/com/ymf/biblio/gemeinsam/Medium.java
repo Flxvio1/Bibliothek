@@ -8,10 +8,11 @@ package Klassendiagramm.com.ymf.biblio.gemeinsam;
  */
 public class Medium {
 
-	public Medium(String autor, String genre, String titel) {
+	public Medium(String autor, String genre, String titel, int medientyp) {
 		this.autor = autor;
 		this.genre = genre;
 		this.titel = titel;
+		this.art = medientyp;
 	}
 
 	private int altersfreigabe;
@@ -20,7 +21,7 @@ public class Medium {
 	private int id;
 	private int stadortCode;
 	private String titel;
-	private Mediumart art;
+	private int art;
 
 	public Medium(){
 
@@ -95,11 +96,11 @@ public class Medium {
 		this.titel = titel;
 	}
 
-	public Mediumart getArt() {
+	public int getArt() {
 		return art;
 	}
 
-	public void setArt(Mediumart art) {
+	public void setArt(int art) {
 		this.art = art;
 	}
 }
