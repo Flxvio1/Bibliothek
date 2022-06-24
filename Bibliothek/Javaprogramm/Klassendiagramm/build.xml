@@ -1,0 +1,47 @@
+<project name="Bibliothek" default="jar">
+	<property name="src.dir" value="./com"/>
+	<property name="build.dir" value="./bin"/>
+
+	<path id="master-classpath">
+		<fileset dir="./lib">
+			<include name="*.jar"/>
+		</fileset>
+		<pathelement path="${build.dir}"/>
+	</path>
+
+	<target name="build" depends="clean" description="Compile source tree java files">
+		<mkdir dir="${build.dir}"/>
+		<javac destdir="${build.dir}" includeAntRuntime="false">
+			<src path="${src.dir}"/>
+			<exclude name="**/*Test.java"/>
+			<classpath refid="master-classpath"/>
+		</javac>
+	</target>
+
+	<target name="clean" description="Clean output directories">
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<target name="jar">
+		<!-- Entpacken und kopieren der benoetigten Libraries und Dateien -->
+		<unjar src="./lib/postgresql-42.4.0.jar" dest="./target/lib"/>
+		<copy todir="./target/lib">
+			<fileset dir="./bin"/>
+<!--			<fileset dir="./com/ymf/biblio">-->
+<!--				<include name="**/*.properties"/>-->
+<!--			</fileset>-->
+		</copy>
+
+		<!-- Erstellen des Java Archivs -->
+		<jar destfile="./target/bibliothek-m326.jar">
+			<fileset dir="./target/lib"/>
+			<manifest>
+				<attribute name="Main-Class" value="Klassendiagramm/com/ymf/biblio/gui/Starter"/>
+				<attribute name="Class-Path" value="."/>
+			</manifest>
+		</jar>
+
+		<!-- loescht nicht mehr benoetigte Dateien -->
+		<delete dir="./target/lib"/>
+	</target>
+</project>
